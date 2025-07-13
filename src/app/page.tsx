@@ -65,7 +65,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         <div className="text-2xl font-extrabold text-blue-600 select-none">MyRepublic</div>
         <div className="flex gap-8 text-base font-medium">
-          <a href="#" className="text-blue-600 font-bold">Beranda</a>
+          <a href="#beranda" className="text-blue-600 font-bold">Beranda</a>
           <a href="#paket" className="text-gray-700 hover:text-blue-600">Paket</a>
           <a href="#caraberlangganan" className="text-gray-700 hover:text-blue-600">Cara Berlangganan</a>
           <a href="#kontak" className="text-gray-700 hover:text-blue-600">Kontak</a>
@@ -77,12 +77,12 @@ function Navbar() {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-white font-sans scroll-smooth">
       {/* Navbar */}
       <Navbar />
 
       {/* Hero Banner */}
-      <section className="relative bg-gradient-to-r from-purple-600 to-purple-800 text-white">
+      <section id="beranda" className="relative bg-gradient-to-r from-purple-600 to-purple-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -104,7 +104,7 @@ export default function Home() {
       </section>
 
       {/* Banner Promo Paket Internet */}
-      <section className="w-full bg-[#f7f6fb] py-12">
+      <section id="paket" className="w-full bg-[#f7f6fb] py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center mb-8">
             <div className="flex gap-2 mb-4">
@@ -163,7 +163,7 @@ export default function Home() {
       </section>
 
       {/* Langkah Berlangganan */}
-      <section className="py-16 bg-gray-50" id="hubungi">
+      <section id="caraberlangganan" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -215,7 +215,7 @@ export default function Home() {
       </section>
 
       {/* Kontak & Alamat */}
-      <section className="py-16 bg-white">
+      <section id="kontak" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
