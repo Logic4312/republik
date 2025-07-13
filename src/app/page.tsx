@@ -59,22 +59,27 @@ const promoPackages = [
   }
 ];
 
+function Navbar() {
+  return (
+    <nav className="w-full bg-white border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+        <div className="text-2xl font-extrabold text-blue-600 select-none">MyRepublic</div>
+        <div className="flex gap-8 text-base font-medium">
+          <a href="#" className="text-blue-600 font-bold">Beranda</a>
+          <a href="#paket" className="text-gray-700 hover:text-blue-600">Paket</a>
+          <a href="#caraberlangganan" className="text-gray-700 hover:text-blue-600">Cara Berlangganan</a>
+          <a href="#kontak" className="text-gray-700 hover:text-blue-600">Kontak</a>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white font-sans">
-      {/* Header */}
-      <header className="w-full bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <Image src="/myrepublic-logo.svg" alt="MyRepublic" width={120} height={32} />
-            </div>
-            <div className="hidden md:block">
-              <span className="text-sm text-gray-600">#WifiTerbaik Fiber Ultra Cepat & Unlimited</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* Navbar */}
+      <Navbar />
 
       {/* Hero Banner */}
       <section className="relative bg-gradient-to-r from-purple-600 to-purple-800 text-white">
