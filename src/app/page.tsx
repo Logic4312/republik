@@ -364,7 +364,9 @@ function Navbar() {
   return (
     <nav className="w-full bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <div className="text-2xl font-extrabold text-blue-600 select-none">MyRepublic</div>
+        <div className="select-none flex items-center h-16">
+          <Image src="/logomyrepublik.jpg" alt="MyRepublic Logo" width={140} height={40} style={{height: '40px', width: 'auto'}} className="object-contain mr-6" />
+        </div>
         <div className="flex gap-8 text-base font-medium">
           <a href="#beranda" className="text-blue-600 font-bold">Beranda</a>
           <a href="#paket" className="text-gray-700 hover:text-blue-600">Paket</a>
