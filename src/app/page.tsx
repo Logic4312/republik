@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import React from "react"; // Added for useEffect
+import { useEffect } from "react";
 
 // Tambahkan index signature agar akses string tidak error
 type Paket = {
@@ -210,12 +211,12 @@ const promoData: PromoData = {
   }
 };
 
-const residensialTabs = ["Residensial", "Bisnis SME"];
 const periodeTabs = ["1 Bulan", "12 Get 6", "9 Get 3", "5 Get 1"];
 const kategoriTabs = ["Internet", "Internet + TV", "Internet + Streaming"];
 
 function PromoTabs() {
-  const [residensial, setResidensial] = useState<string>("Residensial");
+  // const [residensial, setResidensial] = useState<string>("Residensial");
+  const residensial = "Residensial";
   const [periode, setPeriode] = useState<string>("1 Bulan");
   const [kategori, setKategori] = useState<string>("Internet");
   const [startIdx, setStartIdx] = useState<number>(0);
@@ -261,7 +262,16 @@ function PromoTabs() {
     <section id="paket" className="w-full bg-[#f7f6fb] py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center mb-8">
-          <div className="flex gap-2 mb-4">
+          {/* Button PROMO dengan animasi */}
+          {/* <button
+            className="mb-4 px-8 py-2 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 text-white font-extrabold text-lg shadow-lg animate-pulse border-4 border-white drop-shadow-lg"
+            style={{ letterSpacing: '0.2em' }}
+            type="button"
+          >
+            PROMO
+          </button> */}
+          {/* Hapus tombol residensialTabs */}
+          {/* <div className="flex gap-2 mb-4">
             {residensialTabs.map((tab: string) => (
               <button
                 key={tab}
@@ -271,9 +281,17 @@ function PromoTabs() {
                 {tab}
               </button>
             ))}
-          </div>
+          </div> */}
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 text-center">Internetan Super Lancar dan Unlimited!</h2>
           <p className="text-lg text-gray-600 text-center mb-4">Hemat Besar Mulai Rp 235.000 – Streaming Lancar, Gaming Tanpa Lag, Langganan Sekarang</p>
+          <button
+            className="mb-4 px-8 py-2 rounded-full bg-gradient-to-r from-pink-500 to-yellow-400 text-white font-extrabold text-lg shadow-lg animate-pulse border-4 border-white drop-shadow-lg"
+            style={{ letterSpacing: '0.2em' }}
+            type="button"
+            onClick={() => window.open('https://wa.me/6281395864076', '_blank')}
+          >
+            PROMO
+          </button>
           <div className="flex flex-wrap gap-2 mb-4">
             {periodeTabs.map((tab: string) => (
               <button
@@ -321,24 +339,42 @@ function PromoTabs() {
               <div className="col-span-full text-center text-gray-400 py-12">Tidak ada paket untuk pilihan ini.</div>
             ) : (
               visiblePaket.map((pkg: Paket, idx: number) => (
-                <div key={pkg.label} className="bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col">
-                  <div className="relative h-36 w-full">
-                    <Image src={pkg.img} alt={pkg.label} fill className="object-cover" />
-                    <div className="absolute top-2 left-2 bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow">{pkg.speed}</div>
-                    <div className="absolute top-2 right-2 bg-white/80 text-purple-600 px-2 py-0.5 rounded text-xs line-through font-semibold">{pkg.oldSpeed}</div>
-                  </div>
-                  <div className="p-4 flex-1 flex flex-col">
-                    <h3 className="font-bold text-lg text-gray-900 mb-1">{pkg.label}</h3>
-                    <div className="text-2xl font-bold text-purple-700 mb-1">{pkg.price} <span className="text-base font-normal text-gray-500">/ Bulan</span></div>
-                    <div className="text-xs text-gray-500 mb-2">Harga termasuk PPN 11%</div>
-                    <button className="w-full bg-purple-600 text-white py-2 rounded-lg font-semibold mb-3 hover:bg-purple-700 transition">Chat Sales</button>
-                    <div className="text-sm font-semibold text-gray-700 mb-1">Fitur dan Benefit</div>
-                    <ul className="text-xs text-gray-600 flex-1 space-y-1 mb-2">
+                <div key={pkg.label} className="bg-white rounded-[28px] shadow-lg overflow-hidden flex flex-col border-2 border-purple-100 relative p-0" style={{minWidth:320, maxWidth:380, minHeight:520, margin:'0 auto'}}>
+                  <div className="flex-1 flex flex-col items-center px-8 pt-8 pb-4">
+                    <h3 className="font-bold text-lg md:text-xl text-gray-900 mb-1 text-center tracking-wide leading-tight">{pkg.label}</h3>
+                    <div className="text-base md:text-lg font-semibold text-gray-900 mb-1 text-center leading-tight">{pkg.speed}</div>
+                    {/* Harga lama dan diskon jika ada */}
+                    {pkg.oldSpeed && pkg.oldSpeed !== pkg.speed && (
+                      <div className="flex items-center justify-center mb-1 gap-2">
+                        <span className="text-[11px] md:text-xs text-red-500 line-through">Rp. {pkg.oldSpeed.replace(/[^0-9]/g,"")}</span>
+                        <span className="text-[11px] md:text-xs text-red-500 font-semibold">-39%</span>
+                      </div>
+                    )}
+                    <div className="flex items-center justify-center mb-1">
+                      <span className="text-xl md:text-2xl font-extrabold text-gray-900 leading-tight">{pkg.price}</span>
+                      <span className="text-[11px] md:text-xs font-normal text-gray-700 ml-1">/bulan</span>
+                    </div>
+                    <button className="w-full bg-purple-600 text-white py-3 rounded-lg font-bold mb-3 hover:bg-purple-700 transition text-sm md:text-base tracking-widest uppercase" onClick={() => window.open('https://wa.me/6281395864076', '_blank')}>
+                      LANGGANAN SEKARANG
+                    </button>
+                    <div className="text-xs md:text-sm font-bold text-gray-900 mb-1 w-full text-left tracking-wide">FITUR :</div>
+                    <ul className="text-xs md:text-sm text-gray-800 flex-1 space-y-1 mb-2 w-full">
                       {pkg.benefit.map((b: string, i: number) => (
-                        <li key={i} className="flex items-center gap-2"><span>•</span> {b}</li>
+                        <li key={i} className="flex items-center gap-2">
+                          {b.toLowerCase().includes('internet') && <span>📶</span>}
+                          {b.toLowerCase().includes('device') && <span>📱</span>}
+                          {b.toLowerCase().includes('instalasi') && <span>🛠️</span>}
+                          {b.toLowerCase().includes('modem') && <span>📡</span>}
+                          {b.toLowerCase().includes('tv') && <span>📺</span>}
+                          {b.toLowerCase().includes('streaming') && <span>🎬</span>}
+                          {b.toLowerCase().includes('vidio') && <span>🎥</span>}
+                          {!b.toLowerCase().match(/internet|device|instalasi|modem|tv|streaming|vidio/) && <span>•</span>}
+                          <span className="font-normal md:font-medium">{b}</span>
+                        </li>
                       ))}
                     </ul>
                   </div>
+                  <div className="pointer-events-none absolute right-0 bottom-0 w-28 h-28 bg-purple-500 rounded-tl-full" style={{zIndex:0, opacity:0.7}}></div>
                 </div>
               ))
             )}
@@ -378,6 +414,29 @@ function Navbar() {
   );
 }
 
+// Komponen Auto Slide Banner
+function AutoSlideBanner() {
+  const slides = [
+    { text: "Promo Juli: Diskon hingga 39% untuk paket internet!" },
+    { text: "Gratis instalasi & upgrade speed untuk pelanggan baru!" },
+    { text: "Paket Internet + TV mulai Rp 320.000/bulan" },
+  ];
+  const [current, setCurrent] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [slides.length]);
+  return (
+    <div className="w-full flex justify-center items-center mb-6">
+      <div className="bg-white/80 rounded-xl shadow px-6 py-2 text-purple-700 font-bold text-base md:text-lg min-h-[40px] transition-all duration-500">
+        {slides[current].text}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white font-sans scroll-smooth">
@@ -387,6 +446,8 @@ export default function Home() {
       {/* Hero Banner */}
       <section id="beranda" className="relative bg-gradient-to-r from-purple-600 to-purple-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          {/* Auto Slide Banner */}
+          <AutoSlideBanner />
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Nikmati #WifiTerbaik Fiber Ultra Cepat dan Unlimited di Yogyakarta
